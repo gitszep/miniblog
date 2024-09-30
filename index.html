@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="nav">
+            <div class=""><a href="">Logo</a></div>
+            <div class="">
+                <a href="">Home</a>
+                <a href="">About</a>
+                <a href="">Contact</a>
+                <a href="">Services</a>
+            </div>
+            <div class="">
+                <a href="">884803964</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="box">
+        <div class="border">
+            <img src="https://images.unsplash.com/photo-1727434280923-6b064ff088b6?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
+        </div>
+        <div class="border">
+            <img src="https://images.unsplash.com/photo-1727230956558-6c627e98f4c4?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
+        </div>
+        <div class="border">
+            <img src="https://images.unsplash.com/photo-1726310722422-21d60f2c3e38?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHx0b3BpYy1mZWVkfDY3fHRvd0paRnNrcEdnfHxlbnwwfHx8fHw%3D">
+        </div>
+    </div>
+
+    <div class="blog">
+        <input type="text" id="textInput" placeholder="Wpisz coś...">
+        <button id="addButton">Dodaj</button>
+    </div>
+    <div id="content"></div>
+
+
+
+   <div id="content"></div>
+
+<h1>Dodaj zdjęcie</h1>
+<input type="file" id="fileInput" accept="image/*" style="display: none;" />
+<div id="preview" style="display: flex; flex-wrap: wrap;"></div> <!-- Użyj flexbox do układu zdjęć -->
+<button id="removeButton" style="display: none; float: right;">Usuń zdjęcie</button> <!-- Przycisk do usuwania -->
+<button id="uploadButton" style="float: right;">Wybierz zdjęcie</button> <!-- Przycisk dodany na końcu -->
+
+
+
+
+
+<h2>Dodaj Nowy Wiersz</h2>
+<form id="addRowForm">
+    <input type="text" id="data" placeholder="Data (DD/MM/YYYY)" required>
+    <input type="text" id="imie" placeholder="Imię" required>
+    <input type="text" id="nazwisko" placeholder="Nazwisko" required>
+    <input type="text" id="wiek" placeholder="Wiek" required>
+    <button type="submit">Dodaj</button>
+</form>
+
+<table>
+    <thead>
+        <tr>
+            <th>Data</th>
+            <th>Imię</th>
+            <th>Nazwisko</th>
+            <th>Wiek</th>
+            <th>Akcja</th>
+        </tr>
+    </thead>
+    <tbody id="tableBody">
+        <!-- Wiersze będą dodawane tutaj -->
+    </tbody>
+</table>
+
+<script>
+    document.getElementById('addRowForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const data = document.getElementById('data').value;
+        const imie = document.getElementById('imie').value;
+        const nazwisko = document.getElementById('nazwisko').value;
+        const wiek = document.getElementById('wiek').value;
+        
+        const tableBody = document.getElementById('tableBody');
+        const newRow = document.createElement('tr');
+        
+        newRow.innerHTML = `
+            <td>${data}</td>
+            <td>${imie}</td>
+            <td>${nazwisko}</td>
+            <td>${wiek}</td>
+            <td><button class="deleteBtn">Usuń</button></td>
+        `;
+        
+        tableBody.appendChild(newRow);
+        
+        // Resetowanie formularza
+        document.getElementById('addRowForm').reset();
+        
+        // Dodawanie zdarzenia dla przycisku usuwania
+        newRow.querySelector('.deleteBtn').addEventListener('click', function() {
+            tableBody.removeChild(newRow);
+        });
+    });
+</script>
+<script src="script.js"></script>
+</body>
+</html>
